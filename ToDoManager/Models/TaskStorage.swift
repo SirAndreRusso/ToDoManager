@@ -17,7 +17,8 @@ class TaskStorage: TaskStorageProtocol {
                                          Task(title: "Подумать о России", type: .normal, status: .planned),
                                          Task(title: "Полежать на диване", type: .important, status: .completed),
                                          Task(title: "Поспать до обеда", type: .important, status: .planned),
-                                         Task(title: "Понюхать цветы", type: .normal, status: .planned)]
+                                         Task(title: "Понюхать цветы", type: .normal, status: .planned),
+                                         Task(title: "Посмотреть с загадочным видом в окно, сделать глубокий вдох, глотнуть кофе и одернуть занавеску", type: .important, status: .planned)]
         return testTasks
     }
     func saveTasks(_ tasks: [TaskProtocol]) {

@@ -13,7 +13,7 @@
 		B44D517F28593EBB00AABFB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44D517D28593EBB00AABFB1 /* Main.storyboard */; };
 		B44D518128593EBC00AABFB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B44D518028593EBC00AABFB1 /* Assets.xcassets */; };
 		B44D518428593EBC00AABFB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44D518228593EBC00AABFB1 /* LaunchScreen.storyboard */; };
-		B44D518C28593F8900AABFB1 /* tableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D518B28593F8900AABFB1 /* tableTableViewController.swift */; };
+		B44D518C28593F8900AABFB1 /* TaskListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D518B28593F8900AABFB1 /* TaskListController.swift */; };
 		B44D5191285940FA00AABFB1 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D5190285940FA00AABFB1 /* Task.swift */; };
 		B44D5194285942EA00AABFB1 /* TaskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D5193285942EA00AABFB1 /* TaskStorage.swift */; };
 		B44D5196285946A100AABFB1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B44D5195285946A100AABFB1 /* .gitignore */; };
@@ -28,7 +28,7 @@
 		B44D518028593EBC00AABFB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B44D518328593EBC00AABFB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B44D518528593EBC00AABFB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B44D518B28593F8900AABFB1 /* tableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableTableViewController.swift; sourceTree = "<group>"; };
+		B44D518B28593F8900AABFB1 /* TaskListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListController.swift; sourceTree = "<group>"; };
 		B44D5190285940FA00AABFB1 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		B44D5193285942EA00AABFB1 /* TaskStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStorage.swift; sourceTree = "<group>"; };
 		B44D5195285946A100AABFB1 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		B44D518E2859405B00AABFB1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B44D518B28593F8900AABFB1 /* tableTableViewController.swift */,
+				B44D518B28593F8900AABFB1 /* TaskListController.swift */,
 				B44D5195285946A100AABFB1 /* .gitignore */,
 			);
 			path = Controllers;
@@ -184,7 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B44D5191285940FA00AABFB1 /* Task.swift in Sources */,
-				B44D518C28593F8900AABFB1 /* tableTableViewController.swift in Sources */,
+				B44D518C28593F8900AABFB1 /* TaskListController.swift in Sources */,
 				B44D517828593EBB00AABFB1 /* AppDelegate.swift in Sources */,
 				B44D5194285942EA00AABFB1 /* TaskStorage.swift in Sources */,
 				B401A59D285A203300C6354D /* TaskCell.swift in Sources */,
