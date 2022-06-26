@@ -10,38 +10,42 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="71K-mN-8CK" userLabel="TaskTypeCell" customClass="TaskTypeCellTableViewCell" customModule="ToDoManager" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskTypeCell" rowHeight="13" id="71K-mN-8CK" userLabel="TaskTypeCell" customClass="TaskTypeCell" customModule="ToDoManager" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="71K-mN-8CK" id="vWR-ak-qUA">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Название типа" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbH-iF-rta">
-                        <rect key="frame" x="16" y="11" width="288" height="43"/>
+                        <rect key="frame" x="10" y="10" width="300" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание типа" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f14-hq-Qlk">
-                        <rect key="frame" x="16" y="43" width="288" height="16"/>
+                        <rect key="frame" x="10" y="40.5" width="300" height="32.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="wbH-iF-rta" firstAttribute="top" secondItem="vWR-ak-qUA" secondAttribute="topMargin" id="D3Q-Qv-FBs"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="f14-hq-Qlk" secondAttribute="bottom" id="Ml0-Gt-b85"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="wbH-iF-rta" secondAttribute="bottom" constant="5" id="V1V-2k-t7U"/>
-                    <constraint firstItem="f14-hq-Qlk" firstAttribute="leading" secondItem="vWR-ak-qUA" secondAttribute="leadingMargin" id="ZK5-PK-SoO"/>
-                    <constraint firstItem="wbH-iF-rta" firstAttribute="leading" secondItem="vWR-ak-qUA" secondAttribute="leadingMargin" id="m4C-NN-0cn"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="wbH-iF-rta" secondAttribute="trailing" id="v8c-ad-yrb"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="f14-hq-Qlk" secondAttribute="trailing" id="vTf-a4-dme"/>
+                    <constraint firstAttribute="trailing" secondItem="f14-hq-Qlk" secondAttribute="trailing" constant="10" id="IHC-Y4-rMW"/>
+                    <constraint firstAttribute="trailing" secondItem="wbH-iF-rta" secondAttribute="trailing" constant="10" id="KW1-4d-ZgF"/>
+                    <constraint firstAttribute="bottom" secondItem="f14-hq-Qlk" secondAttribute="bottom" constant="10" id="YTF-zG-7vm"/>
+                    <constraint firstItem="wbH-iF-rta" firstAttribute="leading" secondItem="vWR-ak-qUA" secondAttribute="leading" constant="10" id="dRi-Pw-GJe"/>
+                    <constraint firstItem="f14-hq-Qlk" firstAttribute="top" secondItem="wbH-iF-rta" secondAttribute="bottom" constant="10" id="gRd-WB-gqL"/>
+                    <constraint firstItem="f14-hq-Qlk" firstAttribute="leading" secondItem="vWR-ak-qUA" secondAttribute="leading" constant="10" id="kSI-dP-HXE"/>
+                    <constraint firstItem="wbH-iF-rta" firstAttribute="top" secondItem="vWR-ak-qUA" secondAttribute="top" constant="10" id="yyJ-J4-IqJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="4W0-zU-YA1"/>
-            <point key="canvasLocation" x="141" y="114"/>
+            <connections>
+                <outlet property="typeDescription" destination="f14-hq-Qlk" id="zyT-6J-buB"/>
+                <outlet property="typeTitle" destination="wbH-iF-rta" id="es9-KS-Hms"/>
+            </connections>
+            <point key="canvasLocation" x="205.79710144927537" y="15.736607142857142"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -17,6 +17,14 @@
 		B44D5191285940FA00AABFB1 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D5190285940FA00AABFB1 /* Task.swift */; };
 		B44D5194285942EA00AABFB1 /* TaskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D5193285942EA00AABFB1 /* TaskStorage.swift */; };
 		B44D5196285946A100AABFB1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B44D5195285946A100AABFB1 /* .gitignore */; };
+		B47A9EBE2860AAF00057707C /* TaskEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47A9EBD2860AAF00057707C /* TaskEditController.swift */; };
+		B47A9EC02860B9FA0057707C /* TaskTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47A9EBF2860B9FA0057707C /* TaskTypeController.swift */; };
+		B47A9EC7286204610057707C /* TaskTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47A9EC5286204610057707C /* TaskTypeCell.swift */; };
+		B47A9EC8286204610057707C /* TaskTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47A9EC6286204610057707C /* TaskTypeCell.xib */; };
+		B4BFC23E2866616400676F70 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4BFC23C2866616400676F70 /* CoreDataModel.xcdatamodeld */; };
+		B4BFC2412866642500676F70 /* TaskEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BFC23F2866642500676F70 /* TaskEntity+CoreDataClass.swift */; };
+		B4BFC2422866642500676F70 /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BFC2402866642500676F70 /* TaskEntity+CoreDataProperties.swift */; };
+		B4E7385C286668DB00C2263E /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7385B286668DB00C2263E /* DataStoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +40,14 @@
 		B44D5190285940FA00AABFB1 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		B44D5193285942EA00AABFB1 /* TaskStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStorage.swift; sourceTree = "<group>"; };
 		B44D5195285946A100AABFB1 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		B47A9EBD2860AAF00057707C /* TaskEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditController.swift; sourceTree = "<group>"; };
+		B47A9EBF2860B9FA0057707C /* TaskTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTypeController.swift; sourceTree = "<group>"; };
+		B47A9EC5286204610057707C /* TaskTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTypeCell.swift; sourceTree = "<group>"; };
+		B47A9EC6286204610057707C /* TaskTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTypeCell.xib; sourceTree = "<group>"; };
+		B4BFC23D2866616400676F70 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		B4BFC23F2866642500676F70 /* TaskEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B4BFC2402866642500676F70 /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B4E7385B286668DB00C2263E /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				B401A59C285A203300C6354D /* TaskCell.swift */,
+				B47A9EC5286204610057707C /* TaskTypeCell.swift */,
+				B47A9EC6286204610057707C /* TaskTypeCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -86,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				B44D518B28593F8900AABFB1 /* TaskListController.swift */,
+				B47A9EBD2860AAF00057707C /* TaskEditController.swift */,
+				B47A9EBF2860B9FA0057707C /* TaskTypeController.swift */,
 				B44D5195285946A100AABFB1 /* .gitignore */,
 			);
 			path = Controllers;
@@ -107,6 +127,10 @@
 			children = (
 				B44D5190285940FA00AABFB1 /* Task.swift */,
 				B44D5193285942EA00AABFB1 /* TaskStorage.swift */,
+				B4BFC23C2866616400676F70 /* CoreDataModel.xcdatamodeld */,
+				B4BFC23F2866642500676F70 /* TaskEntity+CoreDataClass.swift */,
+				B4BFC2402866642500676F70 /* TaskEntity+CoreDataProperties.swift */,
+				B4E7385B286668DB00C2263E /* DataStoreManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -171,6 +195,7 @@
 			files = (
 				B44D5196285946A100AABFB1 /* .gitignore in Resources */,
 				B44D518428593EBC00AABFB1 /* LaunchScreen.storyboard in Resources */,
+				B47A9EC8286204610057707C /* TaskTypeCell.xib in Resources */,
 				B44D518128593EBC00AABFB1 /* Assets.xcassets in Resources */,
 				B44D517F28593EBB00AABFB1 /* Main.storyboard in Resources */,
 			);
@@ -184,11 +209,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				B44D5191285940FA00AABFB1 /* Task.swift in Sources */,
+				B4BFC2412866642500676F70 /* TaskEntity+CoreDataClass.swift in Sources */,
 				B44D518C28593F8900AABFB1 /* TaskListController.swift in Sources */,
 				B44D517828593EBB00AABFB1 /* AppDelegate.swift in Sources */,
+				B4E7385C286668DB00C2263E /* DataStoreManager.swift in Sources */,
 				B44D5194285942EA00AABFB1 /* TaskStorage.swift in Sources */,
+				B4BFC23E2866616400676F70 /* CoreDataModel.xcdatamodeld in Sources */,
+				B47A9EC02860B9FA0057707C /* TaskTypeController.swift in Sources */,
 				B401A59D285A203300C6354D /* TaskCell.swift in Sources */,
 				B44D517A28593EBB00AABFB1 /* SceneDelegate.swift in Sources */,
+				B4BFC2422866642500676F70 /* TaskEntity+CoreDataProperties.swift in Sources */,
+				B47A9EBE2860AAF00057707C /* TaskEditController.swift in Sources */,
+				B47A9EC7286204610057707C /* TaskTypeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +438,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B4BFC23C2866616400676F70 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B4BFC23D2866616400676F70 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = B4BFC23D2866616400676F70 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B44D516C28593EBB00AABFB1 /* Project object */;
 }

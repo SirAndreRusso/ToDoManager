@@ -21,12 +21,12 @@ struct Task: TaskProtocol {
     
 }
 
-enum TaskPriority {
-    case normal
-    case important
+enum TaskPriority: Int32 {
+    case normal = 0
+    case important = 1
 }
 
-enum TaskStatus: Int {
-    case planned
-    case completed
+enum TaskStatus: Int32 {
+    case planned = 0
+    case completed = 1
 }

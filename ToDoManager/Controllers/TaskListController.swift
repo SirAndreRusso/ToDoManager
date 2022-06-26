@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class TaskListController: UITableViewController {
-    var tasksStorage: TaskStorageProtocol = TaskStorage()
+    var dataStoreManager = DataStoreManager()
+//    var tasksStorage: TaskStorageProtocol = TaskStorage()
+    var sectionsTypesPosition: [TaskPriority] = [.important, .normal]
+    var taskStatusPosition: [TaskStatus] = [.planned, .completed]
     var tasks: [TaskPriority: [TaskProtocol]] = [:] {
         didSet {
             for (tasksGroupPriority, tasksGroup) in tasks {
@@ -22,24 +26,92 @@ class TaskListController: UITableViewController {
             }
         }
     }
-    var sectionsTypesPosition: [TaskPriority] = [.important, .normal]
-    var taskStatusPosition: [TaskStatus] = [.planned, .completed]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTasks()
+        
+      
+       
         //Добавляем кнопку Edit для вьюконтроллера, позволяющую редактировать таблицу
         navigationItem.leftBarButtonItem = editButtonItem
-    }
-    private func loadTasks () {
-        sectionsTypesPosition.forEach { taskType in
-            tasks[taskType] = []
-        }
-        tasksStorage.loadTasks().forEach { task in
-            tasks[task.type]?.append(task)
-        }
+        
+        //  Для добавления долгого нажатия
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress(longPressGestureRecognizer:)))
+                    self.view.addGestureRecognizer(longPressRecognizer)
+        
+        
         
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadTasks()
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCreateScreen" {
+            let destination = segue.destination as! TaskEditController
+            destination.doAfterEdit = {[unowned self] title, type, status in
+                let newTask = Task(title: title, type: type, status: status)
+                tasks[type]?.append(newTask)
+                tableView.reloadData()
+            }
+        }
+    }
+    
+    private func loadTasks () {
+            sectionsTypesPosition.forEach { taskType in
+                tasks[taskType] = []
+            }
+        let context = dataStoreManager.viewContext
+        let fetchRequest: NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
+        do {
+            let entities = try context.fetch(fetchRequest)
+            
+            for entity in entities {
+                let task: TaskProtocol = Task(title: entity.title!, type: entity.taskPriority, status: entity.taskStatus)
+                tasks[task.type]?.append(task)
+                tableView.reloadData()
+            }
+            
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        
+        if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
+            
+            let touchPoint = longPressGestureRecognizer.location(in: self.tableView)
+            if let indexPath = self.tableView.indexPathForRow(at: touchPoint)  {
+                
+                let taskType = sectionsTypesPosition[indexPath.section]
+                           guard let _ = tasks[taskType]?[indexPath.row]
+                           else {
+                               return
+                           }
+                           guard tasks[taskType]![indexPath.row].status == .planned
+                           else {
+                               tableView.deselectRow(at: indexPath, animated: true)
+                               return
+                           }
+                           let completeTaskAlert = UIAlertController(title: "Внимание", message: "Вы действительно хотите завершить задачу?", preferredStyle: .alert)
+                           let completeTaskAction = UIAlertAction(title: "Завершить", style: .default){ _ in
+                               self.tasks[taskType]![indexPath.row].status = .completed
+                               self.tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
+                           }
+                               let cancelAction = UIAlertAction(title: "Отмена", style: .default)
+                               completeTaskAlert.addAction(completeTaskAction)
+                               completeTaskAlert.addAction(cancelAction)
+                           self.present(completeTaskAlert, animated: true)
+                           }
+
+            }
+        }
+    
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title: String?
@@ -66,7 +138,9 @@ class TaskListController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let taskType = sectionsTypesPosition[section]
-        guard let currentTasksType = tasks[taskType] else {return 0}
+        guard let currentTasksType = tasks[taskType]
+        else {
+            return 0}
         return currentTasksType.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,43 +206,81 @@ class TaskListController: UITableViewController {
     }
     
     
+//Функционал завершения выбранной задачи переехал из метода didSelectRowAt в метод longPress
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let taskType = sectionsTypesPosition[indexPath.section]
-        guard let _ = tasks[taskType]?[indexPath.row]
-        else {
-            return
-        }
-        guard tasks[taskType]![indexPath.row].status == .planned
-        else {
+//        let taskType = sectionsTypesPosition[indexPath.section]
+//        guard let _ = tasks[taskType]?[indexPath.row]
+//        else {
+//            return
+//        }
+//        guard tasks[taskType]![indexPath.row].status == .planned
+//        else {
             tableView.deselectRow(at: indexPath, animated: true)
             return
+//        }
+//        let completeTaskAlert = UIAlertController(title: "Внимание", message: "Вы действительно хотите завершить задачу?", preferredStyle: .alert)
+//        let completeTaskAction = UIAlertAction(title: "Завершить", style: .default){ _ in
+//            self.tasks[taskType]![indexPath.row].status = .completed
+//        tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
+//        }
+//            let cancelAction = UIAlertAction(title: "Отмена", style: .default)
+//            completeTaskAlert.addAction(completeTaskAction)
+//            completeTaskAlert.addAction(cancelAction)
+//        self.present(completeTaskAlert, animated: true)
         }
-        tasks[taskType]![indexPath.row].status = .completed
-        tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
-        
-    }
+    
+    
+    
+    
+    
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let taskType = sectionsTypesPosition[indexPath.section]
         guard let _ = tasks[taskType]?[indexPath.row]
         else {
             return nil
         }
-        guard tasks[taskType]![indexPath.row].status == .completed
-        else {
-            return nil
-        }
+    
+        
         let actionSwipeInstance = UIContextualAction(style: .normal, title: "Не выполнена") {_,_,_ in
             self.tasks[taskType]![indexPath.row].status = .planned
             self.tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
         }
-        return UISwipeActionsConfiguration(actions: [actionSwipeInstance])
+        let actionSwipeToEdit = UIContextualAction(style: .normal, title: "Изменить") {_,_,_ in
+            let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TaskEditController") as! TaskEditController
+            editScreen.taskText = self.tasks[taskType]![indexPath.row].title
+            editScreen.taskType = self.tasks[taskType]![indexPath.row].type
+            editScreen.taskStatus = self.tasks[taskType]![indexPath.row].status
+            editScreen.doAfterEdit = {[unowned self] title, type, status in
+                let editedTask = Task(title: title, type: type, status: status)
+                tasks[taskType]![indexPath.row] = editedTask
+                tableView.reloadData()
+            }
+            self.navigationController?.pushViewController(editScreen, animated: true)
+        }
+        actionSwipeToEdit.backgroundColor = .darkGray
+        let actionsConfiguration :UISwipeActionsConfiguration
+        if tasks[taskType]![indexPath.row].status == .completed {
+            actionsConfiguration = UISwipeActionsConfiguration(actions: [actionSwipeInstance, actionSwipeToEdit])
+        }else{
+            actionsConfiguration = UISwipeActionsConfiguration(actions: [actionSwipeToEdit])
+        }
+    return actionsConfiguration
     }
+    
+    
+    
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let taskType = sectionsTypesPosition[indexPath.section]
         tasks[taskType]?.remove(at: indexPath.row)
         
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
+    
+    
+    
+    
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let taskTypeFrom = sectionsTypesPosition[sourceIndexPath.section]
         let taskTypeto = sectionsTypesPosition[destinationIndexPath.section]
@@ -176,12 +288,59 @@ class TaskListController: UITableViewController {
         else {
             return
         }
+        
+// TODO: - реализовать здесь изменение  Entity.TaskPriority в CoreData (delete и insert)
         tasks[taskTypeFrom]!.remove(at: sourceIndexPath.row)
+        
         tasks[taskTypeto]!.insert(movedTask, at: destinationIndexPath.row)
         if taskTypeFrom != taskTypeto {
             tasks[taskTypeto]![destinationIndexPath.row].type = taskTypeto
+            
         }
+        
         tableView.reloadData()
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//MARK: - Core Data Magic
+    func saveTask(withTitle: String, withType: TaskPriority, withStatus: TaskStatus){
+        let context = dataStoreManager.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: "TaskEntity", in: context)
+        else {
+            return
+        }
+        let taskEntity = TaskEntity(entity: entity, insertInto: context)
+        let task = Task(title: withTitle, type: withType, status: withStatus)
+            
+       
+        
+        taskEntity.title = withTitle
+        taskEntity.taskPriority = withType
+        taskEntity.taskStatus = withStatus
+        taskEntity.type = withType.rawValue
+        taskEntity.status = withStatus.rawValue
+        do {
+            try context.save()
+            tasks[withType]?.append(task)
+            print("taskObject appended")
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    
 }
 
