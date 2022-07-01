@@ -30,3 +30,4 @@ enum TaskStatus: Int32 {
     case planned = 0
     case completed = 1
 }
+

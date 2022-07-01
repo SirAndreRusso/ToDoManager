@@ -114,9 +114,9 @@
 		B44D518F2859407400AABFB1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B401A59B285A1F2200C6354D /* Cells */,
 				B44D518228593EBC00AABFB1 /* LaunchScreen.storyboard */,
 				B44D517D28593EBB00AABFB1 /* Main.storyboard */,
+				B401A59B285A1F2200C6354D /* Cells */,
 				B44D518028593EBC00AABFB1 /* Assets.xcassets */,
 			);
 			path = Views;

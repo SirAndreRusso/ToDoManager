@@ -46,6 +46,7 @@ class TaskEditController: UITableViewController {
         let status: TaskStatus = taskStatusSwitch.isOn ? .completed: .planned
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let taskListVC = storyboard.instantiateViewController(withIdentifier: "TaskListController") as! TaskListController
+        taskListVC.loadTasks()
         taskListVC.saveTask(withTitle: title, withType: type, withStatus: status)
         
         
@@ -64,5 +65,8 @@ class TaskEditController: UITableViewController {
 
         return 3
     }
+    
+    
+    
 }
    
